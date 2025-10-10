@@ -1,11 +1,18 @@
+import datetime as dt
+
+
 class Person:
     def __init__(self, name: str, birth_date: int | str, occupation: str ="unemployed", higher_education: bool =False):
         self.name = name
-        self.birth_date = birth_date
+        self.__birth_date = birth_date
         self.__occupation = occupation
         self.__higher_education = higher_education
     def introduce(self):
-        return f"{self.name} was born in {self.birth_date}, works as a {self.__occupation} and has higher education: {self.__higher_education}"
+        return f"{self.name} was born in {self.__birth_date}, works as a {self.__occupation} and has higher education: {self.__higher_education}"
+    @property
+    def age(self):
+        current_year = dt.datetime.now().year
+        return current_year - int(self.__birth_date)
 
 
 # класс наследник по домашке
@@ -31,3 +38,5 @@ cl1 = Classmate("Иван", 2000, "студент", True, "11D")
 
 print(fr1.introduce())
 print(cl1.introduce())
+print(f"{fr1.name} is {fr1.age} years old")
+print(f"{cl1.name} is {cl1.age} years old")
