@@ -1,8 +1,9 @@
 import datetime as dt
 
 
+
 class Person:
-    def __init__(self, name: str, birth_date: int | str, occupation: str ="unemployed", higher_education: bool =False):
+    def __init__(self, name: str, birth_date: int, occupation: str ="unemployed", higher_education: bool =False):
         self.name = name
         self.__birth_date = birth_date
         self.__occupation = occupation
