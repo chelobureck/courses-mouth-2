@@ -59,4 +59,4 @@ class AdminPageView(LogginMixin, BaseView):
 
 admin_page = AdminPageView()
 # print(admin_page.__class__.__mro__) # для проверки method resolution order
-admin_page.render()  # по умолчанию пользователь не зарегистрирован, вставьте auth_status=True, чтобы проверить авторизацию
+admin_page.render(auth_status=True)  # по умолчанию пользователь не зарегистрирован, вставьте auth_status=True, чтобы проверить авторизацию
