@@ -13,8 +13,12 @@ class Distance:
             if self.unit == obj.unit:
                 new_obj = Distance(value=self.value + obj.value, unit=self.unit)
                 return new_obj
+            elif self.unit == "kilometers" and obj.unit == "meters":
+                return Distance(value=self.value + obj.value / 1000, unit="kilometers")
+            elif self.unit == "meters" and obj.unit == "kilometers":
+                return Distance(value=self.value + obj.value * 1000, unit="meters")
             else:
-                return "у атрибутов должна быть одна единица измерения"
+                return "только meters и kilometers являются допустимыми единицами измерения"
         except AttributeError:
             return "Проверьте что оба атрибута являются обьектами на основе класса Money"
         except:
@@ -27,6 +31,16 @@ class Distance:
                 if new_obj.value < 0:
                     raise ValueError("Растояние не может быть отрицательным (попробуйте поменять атрибуты местами)")
                 return new_obj
+            elif self.unit == "kilometers" and obj.unit == "meters":
+                new_value = self.value - obj.value / 1000
+                if new_value < 0:
+                    raise ValueError("Растояние не может быть отрицательным (попробуйте поменять атрибуты местами)")
+                return Distance(value=new_value, unit="kilometers")
+            elif self.unit == "meters" and obj.unit == "kilometers":
+                new_value = self.value - obj.value * 1000
+                if new_value < 0:
+                    raise ValueError("Растояние не может быть отрицательным (попробуйте поменять атрибуты местами)")
+                return Distance(value=new_value, unit="meters")
             else:
                 return "у атрибутов должна быть одна единица измерения"
         except AttributeError:
@@ -42,8 +56,12 @@ class Distance:
                 if self.value == obj.value:
                     return True
                 return False
+            elif self.unit == "kilometers" and obj.unit == "meters":
+                return self.value * 1000 == obj.value
+            elif self.unit == "meters" and obj.unit == "kilometers":
+                return self.value == obj.value * 1000
             else:
-                return "у атрибутов должна быть одна единица измерения"
+                return "только meters и kilometers являются допустимыми единицами измерения"
         except AttributeError:
             return "Проверьте что оба атрибута являются обьектами на основе класса Distance"
         except:
@@ -74,7 +92,7 @@ obj4 = Distance(value=5600, unit="meters")
 obj5 = Distance(value=400, unit="meters")
 
 print(obj1 == obj2)
-print(obj1.unit_kilemeters == obj2)
+
 
 print(obj3)
 
