@@ -8,8 +8,9 @@ class Car(Vehicle):
         print("Car starting")
 
 class ElectricCar(Vehicle):
-    def electro_start(self):   # переименовал метод, чтобы вызов super().start() проходил мимо ElectricCar и шел к Vehicle
-        print("Electric car starting")
+    def electro_start(self):
+        if __name__ == "__main__":
+            print("Electric car starting")
 
 class Tesla(Car, ElectricCar):
     def start(self):
