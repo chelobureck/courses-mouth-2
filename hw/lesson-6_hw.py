@@ -28,14 +28,16 @@ class ContactList:
     def __init__(self):
         pass
 
-    def add_contact(self, phone_number: str, name: str):
+    @staticmethod
+    def add_contact(cls, phone_number: str, name: str):
         try:
             Contact.validate_phone_number(phone_number)
             ContactList.all_contacts[Contact.id] = str(Contact(phone_number, name))
         except ValueError:
             return "Неверный формат номера телефона"
-        
-    def remove_contact(self, contact_id: int):
+    
+    @staticmethod
+    def remove_contact(cls, contact_id: int):
         try:
             del ContactList.all_contacts[contact_id]
         except:
@@ -43,19 +45,19 @@ class ContactList:
 
 
 # user1 = Contact("+996578645376", "Ivan")
-# print(user1.validate_phone_number(user1.phone_number))
+# print(Contact.validate_phone_number("+996578645376"))
 
-# contact_list = ContactList()
-# print(contact_list.add_contact("0578644376", "Ivan"))
-# print(contact_list.add_contact("0578644654", "Petr"))
-# print(contact_list.add_contact("0548649654", "Petr"))
-# print(contact_list.add_contact("0757864465", "Petr"))
-# print(contact_list.add_contact("0775786446", "Petr"))
-# print(contact_list.add_contact("0757578644", "Petr"))
-# print(ContactList.all_contacts)
-# print(Contact.id)
+contact_list = ContactList()
+# print(ContactList.add_contact("0548649654", "Petr"))
+# print(ContactList.add_contact("0578644376", "Ivan"))
+# print(ContactList.add_contact("0578644654", "Petr"))
+# print(ContactList.add_contact("0757864465", "Petr"))
+print(ContactList.add_contact(ContactList, "0775786446", "Petr"))
+print(ContactList.add_contact(ContactList, "0757578644", "Petr"))
+print(ContactList.all_contacts)
+print(Contact.id)
 # contact_list.remove_contact(contact_id=4)
 # print(contact_list.add_contact("0757575644", "nazik"))
 # print(contact_list.add_contact("0757574644", "gulnazik"))
-# print(ContactList.all_contacts)
-# print(Contact.id)
+print(ContactList.all_contacts)
+print(Contact.id)
