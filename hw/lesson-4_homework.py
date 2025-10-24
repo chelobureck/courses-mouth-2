@@ -8,9 +8,9 @@ class Car(Vehicle):
         print("Car starting")
 
 class ElectricCar(Vehicle):
-    def electro_start(self):
-        if __name__ == "__main__":
-            print("Electric car starting")
+    def start(self):
+        super().start()
+        
 
 class Tesla(Car, ElectricCar):
     def start(self):
