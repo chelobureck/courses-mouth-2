@@ -10,7 +10,7 @@ class Car(Vehicle):
 class ElectricCar(Vehicle):
     def start(self):
         super().start()
-        
+        # print("Electric car starting")   
 
 class Tesla(Car, ElectricCar):
     def start(self):
