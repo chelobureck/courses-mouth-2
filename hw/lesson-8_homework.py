@@ -92,6 +92,16 @@ def hard_delete(books_id: int):
         print("произошла ошибка при жетском удалении")
 
 
+def get_books_by_author(author: str):
+    try:
+        res = engine.execute("""
+            SELECT * FROM books  WHERE author = ? ORDER BY name ASC 
+        """, (author,))
+        return res.fetchall()
+    except:
+        print("произошла ошибка при получении данных")
+
+
 books_list = [
             ["Garry Potter", "J.K. Rowling", 1997, "Fantasy", 223, 5],
             ["The Hobbit", "J.R.R. Tolkien", 1937, "Fantasy", 310, 3],
@@ -109,12 +119,9 @@ books_list = [
 
 if __name__ == "__main__":
     engine = sqlite3.connect("database.db")
-    create_tables()
-    insert_books(books_list)
-    delete_book("Pride and Prejudice")
-    soft_delete(4)
-    soft_delete(7)
-    hard_delete(4)
-    hard_delete(3)
+    # create_tables()
+    # insert_books(books_list)
+    print(get_books_by_author("J.D. Salinger"))
+
 
     engine.close()
